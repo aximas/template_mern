@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  server:
+    build: /server                    
+    command: yarn dev             
+    volumes:
+      - ./server/src:/usr/src/app/src # rewrite only src files 
+
+  client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.dev
+    command: yarn start
+    volumes:
+      - ./client:/usr/src/app # rewrite only src files 
+    # stdin_open: true
+    # tty: true
